@@ -10,12 +10,77 @@
 </head>
 <body>
     <header>
-        <title>
-            <h1>Gantt Chart</h1>
-        </title>
-        <div class="pro-name">
-            <p>Calendar Project</p>
+        <img src="../../img/Gantt Chart.png" alt="title Gantt Chart">
+        <div class="project-name">
+            <img src="../../img/folder-logo.gif" alt="folder logo">
+            <div class="project-list">
+                <div class="dropdown">
+                    <div class="pro-name">Calendar Project  </div>
+                    <div class="dropdown-content">
+                        <div class="pro-name">Calendar Project</div>
+                        <div class="pro-name">Todo App</div>
+                        <div class="pro-name">Portfolio Site</div>
+                        <div class="pro-name">Weather App</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
+    <main>
+    <div class="setting">
+        <div class="input-section" id="memberSection">
+            <h2>メンバー人数入力</h2>
+            <input type="number" id="memberCount" min="1" max="20" value="1" style="width:60px;">
+            <button id="setMemberCountBtn">決定</button>
+
+            <div id="memberNamesContainer" style="margin-top:10px;"></div>
+            <button id="registerMembersBtn" style="display:none; margin-top: 10px;">メンバー登録</button>
+        </div>
+
+        <div class="input-section" id="phaseSection" style="margin-left: 40px;">
+            <h2>フェーズ数入力</h2>
+            <input type="number" id="phaseCount" min="1" max="10" value="1" style="width:60px;">
+            <button id="setPhasesBtn">決定</button>
+
+            <div id="phaseTitlesContainer" style="margin-top:10px;"></div>
+        </div>
+    </div>
+
+        <div class="left">
+            <table border="1" cellspacing="0" cellpadding="5" id="ganttTable">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Member</th>
+                        <th>Progress</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- フェーズタイトルとタスクはここにJSで動的に入れる -->
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="right">
+
+        </div>
+    </main>
+    <script>
+        document.querySelectorAll('.progress-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                let val = e.target.value;
+                if(val < 0) val = 0;
+                if(val > 100) val = 100;
+                e.target.value = val;
+                const bar = e.target.nextElementSibling.querySelector('.progress-fill');
+                bar.style.width = val + '%';
+            });
+        });
+    </script>
+    <script src="gantt.js"></script>
+
 </body>
 </html>
